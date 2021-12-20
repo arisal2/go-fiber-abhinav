@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/arisal2/go-fiber-abhinav/config"
-	"github.com/arisal2/go-fiber-abhinav/internal/model"
+	"github.com/arisal2/go-fiber-abhinav/internals/model"
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
 )

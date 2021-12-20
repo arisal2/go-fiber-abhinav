@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/arisal2/go-fiber-abhinav/config"
+	"github.com/arisal2/go-fiber-abhinav/internal/model"
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
 )
@@ -31,4 +32,7 @@ func ConnectDB() {
 	}
 
 	fmt.Println("Connection Opened...")
+
+	DB.AutoMigrate(&model.Note{})
+	fmt.Println("Database Migrated...")
 }

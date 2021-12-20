@@ -1,19 +1,25 @@
 package main
 
 import (
+	"encoding/json"
 	"github.com/gofiber/fiber/v2"
 	"github.com/arisal2/go-fiber-abhinav/database"
+	"github.com/arisal2/go-fiber-abhinav/router"
 )
 
 func main() {
 	// Start a new fiber app
-	app := fiber.New()
-
-	// Connect to the Databse
-	database.ConnectDB()
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
+    app := fiber.New(fiber.Config{
+		JSONEncoder: json.Marshal,
+		JSONDecoder: json.Unmarshal,
 	})
 
-	app.Listen(":3000")
+    // Connect to the Database
+    database.ConnectDB()
+
+    // Setup the router
+    router.SetupRoutes(app)
+
+    // Listen on PORT 3000
+    app.Listen(":3000")
 }

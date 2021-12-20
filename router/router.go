@@ -1,15 +1,14 @@
 package router
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+    noteRoutes "github.com/arisal2/go-fiber-abhinav/internals/routes/note"
+)
 
 func SetupRoutes(app *fiber.App) {
-	app := fiber.App()
 	api := app.Group("/api", logger.New())
-}
 
-/* 	Example of grouping
-	user := api.Group("user")
-	user.GET("/", func(c *fiber.Ctx) {} )
-	user.GET("/:userId", func(c *fiber.Ctx) {} )
-	user.PUT("/:userId" ,func(c *fiber.Ctx) {} )
-*/
+	// Setup the Node Routes
+	noteRoutes.SetupNoteRoutes(api)
+}

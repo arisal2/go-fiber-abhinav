@@ -1,9 +1,9 @@
 package router
 
 import (
+	noteRoutes "github.com/arisal2/go-fiber-abhinav/internals/routes/note"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-    noteRoutes "github.com/arisal2/go-fiber-abhinav/internals/routes/note"
 )
 
 func SetupRoutes(app *fiber.App) {

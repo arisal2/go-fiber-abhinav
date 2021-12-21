@@ -1,10 +1,10 @@
 package noteHandler
 
 import (
-	"github.com/gofiber/fiber/v2"
-	"github.com/google/uuid"
 	"github.com/arisal2/go-fiber-abhinav/database"
 	"github.com/arisal2/go-fiber-abhinav/internals/model"
+	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 func GetNotes(c *fiber.Ctx) error {
@@ -16,7 +16,7 @@ func GetNotes(c *fiber.Ctx) error {
 	if len(notes) == 0 {
 		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "No notes present", "data": nil})
 	}
-	
+
 	return c.Status(200).JSON(fiber.Map{"status": "success", "message": "Notes Found", "data": notes})
 }
 
@@ -26,8 +26,8 @@ func CreateNotes(c *fiber.Ctx) error {
 
 	err := c.BodyParser(note)
 	if err != nil {
-        return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Review your input", "data": err})
-    }
+		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Review your input", "data": err})
+	}
 
 	note.ID = uuid.New()
 	err = db.Create(&note).Error
@@ -55,10 +55,10 @@ func GetNote(c *fiber.Ctx) error {
 
 func UpdateNote(c *fiber.Ctx) error {
 	type updateNote struct {
-        Title    string `json:"title"`
-        SubTitle string `json:"subtitle"`
-        Text     string `json:"text"`
-    }
+		Title    string `json:"title"`
+		SubTitle string `json:"subtitle"`
+		Text     string `json:"text"`
+	}
 	db := database.DB
 	var note model.Note
 
@@ -78,8 +78,8 @@ func UpdateNote(c *fiber.Ctx) error {
 	}
 
 	note.Title = updateNoteData.Title
-    note.SubTitle = updateNoteData.SubTitle
-    note.Text = updateNoteData.Text
+	note.SubTitle = updateNoteData.SubTitle
+	note.Text = updateNoteData.Text
 
 	db.Save(&note)
 
